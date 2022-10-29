@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mirroring/mirroring.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,14 +16,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/': (context) => const MyHomePage(),
+        '/mirroring': (context) => const MirroringScreen(),
+      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -43,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 print("onPress");
+                Navigator.pushNamed(context, '/mirroring');
               },
               style: ElevatedButton.styleFrom(
                 side: BorderSide(
